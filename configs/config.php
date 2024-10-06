@@ -4,6 +4,12 @@ $config['gmID'] = "1074";
 $config['gmNick'] = "Chupacu";
 $config['serverversion'] = "151";
 
+//Task config
+$config['mission'] = 66001;
+
+//Meridian octets
+$config['m_data'] = '000000500000000000000000000000050000006400003f920000000100000000000000000000000000000000000000000000000000000000';
+
 //MYSQL CONFIGS
 $config['mysql'] = array(
     "host" => "localhost",

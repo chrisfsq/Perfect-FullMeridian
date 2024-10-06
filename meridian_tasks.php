@@ -23,7 +23,7 @@ function insertMeridian($line = null)
         $missionID = $matches[2];
 
         // ID da tasks que será monitorada
-        $missionToMonitor = 33469;
+        $missionToMonitor = $config['mission'];
 
         if ($missionID == $missionToMonitor) {
             $idAcc = $api->getRoleBase($roleID);
@@ -38,8 +38,8 @@ function insertMeridian($line = null)
             $stmt->close();
 
             if ($zoneid == 1) {
-                //$api->chatWhisper($roleID, $roleName, "A sua conta precisa estar deslogada para aplicar o meridiano, disconecte imediatamente e aguarde 5 minutos ", 14);
-                $api->chatInGame("$roleName deslogue sua conta!");
+                $api->chatWhisper($roleID, $roleName, "A sua conta precisa estar deslogada para aplicar o meridiano, disconecte imediatamente e aguarde 5 minutos ", 14);
+                //$api->chatInGame("$roleName deslogue sua conta!");
 
                 while ($zoneid == 1) {
                     sleep(60);
@@ -67,9 +67,9 @@ function insertMeridian($line = null)
 
             $roleData = $api->getRole($roleID);
 
-            if ($roleData['status']['meridian_data'] != '000000500000000000000000000000050000006400003f920000000100000000000000000000000000000000000000000000000000000000') {
+            if ($roleData['status']['meridian_data'] != $config['m_data']) {
 
-                $roleData['status']['meridian_data'] = '000000500000000000000000000000050000006400003f920000000100000000000000000000000000000000000000000000000000000000';
+                $roleData['status']['meridian_data'] = $config['m_data'];
 
                 if ($api->putRole($roleID, $roleData)) {
                     $stmt = $conn->prepare("INSERT INTO meridiano (roleID) VALUES (?)");
