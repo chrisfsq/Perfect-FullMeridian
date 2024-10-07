@@ -38,11 +38,11 @@ function insertMeridian($line = null)
             $stmt->close();
 
             if ($zoneid == 1) {
-                $api->chatWhisper($roleID, $roleName, "A sua conta precisa estar deslogada para aplicar o meridiano, disconecte imediatamente e aguarde 5 minutos ", 14);
+                $api->chatWhisper($roleID, $roleName, "[ATENÇÃO] Meridiano aplicado com sucesso, porém só terá efeito após você desconectar sua conta.", 14);
                 //$api->chatInGame("$roleName deslogue sua conta!");
 
                 while ($zoneid == 1) {
-                    sleep(60);
+                    sleep(30);
                     
                     $stmt = $conn->prepare("SELECT zoneid FROM point WHERE uid = ?");
                     $stmt->bind_param("i", $userId);
